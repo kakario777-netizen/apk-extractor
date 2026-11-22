@@ -1,0 +1,24 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'com.kakario.apkextractor'
+    compileSdk 34
+    defaultConfig {
+        applicationId 'com.kakario.apkextractor'
+        minSdk 29
+        targetSdk 34
+        versionCode (System.getenv('BUILD_NUM') ?: '1').toInteger()
+        versionName "1.0." + (System.getenv('BUILD_NUM') ?: '1')
+    }
+    signingConfigs {
+        release {
+            storeFile file('release.jks')
+            storePassword 'apkext123'
+            keyAlias 'apkext'
+            keyPassword 'apkext123'
+        }
+    }
+    buildTypes {
+        release { minifyEnabled false; signingConfig signingConfigs.release }
+    }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+}
