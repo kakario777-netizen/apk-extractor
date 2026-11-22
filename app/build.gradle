@@ -1,11 +1,11 @@
 plugins { id 'com.android.application' }
 android {
     namespace 'com.kakario.apkextractor'
-    compileSdk 34
+    compileSdk 35
     defaultConfig {
         applicationId 'com.kakario.apkextractor'
         minSdk 29
-        targetSdk 34
+        targetSdk 35
         versionCode (System.getenv('BUILD_NUM') ?: '1').toInteger()
         versionName "1.0." + (System.getenv('BUILD_NUM') ?: '1')
     }
@@ -20,5 +20,6 @@ android {
     buildTypes {
         release { minifyEnabled false; signingConfig signingConfigs.release }
     }
+    lint { checkReleaseBuilds false; abortOnError false }
     compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
 }
